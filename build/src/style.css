@@ -1,3 +1,20 @@
-/*body {
-	background-image: url('../assets/home.png');
-}*/
+@import '~normalize.css';
+body {
+	background-color: rgb(69, 69, 69);
+}
+
+.wrapper{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 20px;
+}
+.ancients{
+	display: flex;
+	justify-content: space-around;
+}
+.ancients > div{
+	background-size: cover;
+	width: 16vw;
+	height: 24vw;
+}
