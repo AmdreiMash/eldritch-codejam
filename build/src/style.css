@@ -1,4 +1,7 @@
 @import '~normalize.css';
+* {
+	box-sizing: border-box;
+}
 body {
 	background-color: rgb(69, 69, 69);
 }
@@ -11,10 +14,17 @@ body {
 }
 .ancients{
 	display: flex;
-	justify-content: space-around;
+	justify-content: center;
+	gap: 20px;
 }
-.ancients > div{
+.ancient {
 	background-size: cover;
-	width: 16vw;
-	height: 24vw;
+	width: 15vw;
+	height: 21vw;
+	opacity: 0.7;
+}
+
+.active {
+	opacity: 1;
+	border: 2px rgba(129, 57, 57, 0.488) solid;
 }
