@@ -9,14 +9,13 @@ export function getAntcient() {
 		div.classList.add('ancient')
 		div.style.backgroundImage = `url('${ancients[key]}')`
 		document.querySelector('.ancients').append(div)
-		div.addEventListener('click', () => {
-			event.target.classList.add('active')
-			//for (let i = 0; i < document.querySelector('.ancients').childNodes.length; i++) {
-			//};
-			console.log(document.querySelector('.ancients').childNodes)
-		})
+		div.addEventListener('click', getChoice)
 	}
 	//let arr = document.querySelectorAll('.ancient')
 	console.log(arr)
 }
 
+export function getChoice(event) {
+	event.target.classList.add('active')
+	console.log(document.querySelector('.ancients').childNodes)
+}
