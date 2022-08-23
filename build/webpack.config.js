@@ -2,6 +2,9 @@ const path = require('path');
 
 module.exports = {
 	entry: './src/index.js',
+	devServer: {
+		static: './eldritch-codejam',
+	},
 	output: {
 		filename: 'builde.js',
 		path: path.resolve(__dirname, 'eldritch-codejam'),
@@ -17,5 +20,8 @@ module.exports = {
 				type: 'asset/resource',
 			},
 		],
+	},
+	optimization: {
+		runtimeChunk: 'single',
 	},
 };
