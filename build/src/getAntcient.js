@@ -1,5 +1,7 @@
 import { chain } from 'lodash';
 import ancients from '../assets/Ancients/index.js';
+import difficulties from '../data/difficulties.js';
+
 
 
 export function getAntcient() {
@@ -8,11 +10,21 @@ export function getAntcient() {
 		div.id = key
 		div.classList.add('ancient')
 		div.style.backgroundImage = `url('${ancients[key]}')`
-		document.querySelector('.ancients').append(div)
+		document.querySelector('.ancients').append(div) //! test function
 		div.addEventListener('click', getChoice)
 	}
-	//let arr = document.querySelectorAll('.ancient')
-	console.log(arr)
+}
+
+export function getDifficulties() {
+	difficulties.forEach(element => {
+		console.log(element.id)
+		let button = document.createElement('button');
+		button.id = element.id;
+		button.textContent = element.name;
+		button.classList.add('difficulties');
+		document.querySelector('.level').append(button)
+		button.addEventListener('click', getChoice) //! test function
+	})
 }
 
 export function getChoice(event) {
