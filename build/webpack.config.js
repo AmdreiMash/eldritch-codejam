@@ -5,7 +5,7 @@ module.exports = {
 	entry: './src/index.js',
 	output: {
 		filename: 'builde.js',
-		path: path.resolve(__dirname, 'eldritch-codejam'),
+		path: path.resolve(__dirname, 'docs'),
 	},
 	module: {
 		rules: [
