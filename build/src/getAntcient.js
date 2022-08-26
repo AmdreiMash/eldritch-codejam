@@ -10,8 +10,7 @@ export function getAntcient() {
 		div.id = key
 		div.classList.add('ancient')
 		div.style.backgroundImage = `url('${ancients[key]}')`
-		document.querySelector('.ancients').append(div) //! test function
-		div.addEventListener('click', getChoice)
+		document.querySelector('.ancients').append(div)
 	}
 }
 
@@ -23,11 +22,6 @@ export function getDifficulties() {
 		button.textContent = element.name;
 		button.classList.add('difficulties');
 		document.querySelector('.level').append(button)
-		button.addEventListener('click', getChoice) //! test function
 	})
 }
 
-export function getChoice(event) {
-	event.target.classList.add('active')
-	console.log(document.querySelector('.ancients').childNodes)
-}
