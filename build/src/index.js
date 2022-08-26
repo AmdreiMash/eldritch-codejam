@@ -4,7 +4,7 @@ import ancients from '../assets/Ancients/index.js';
 import difficulties from '../data/difficulties.js';
 import BGimg from '../assets/home.png';
 import showNextBG from '../assets/mythicCardBackground.png';
-import { getEvent, getSettings } from './helper';
+import { getEvent, getSettings, conditions } from './helper';
 import { getAntcient, getDifficulties } from './getAntcient.js';
 import ancientsData from '../data/ancients.js';
 
