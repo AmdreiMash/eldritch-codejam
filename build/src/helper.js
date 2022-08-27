@@ -11,9 +11,9 @@ let conditions = {
 	brown: 0,
 	green: 0,
 	deck: {
-		blue: [],
-		br: [],
-		gr: [],
+		blue: [1],
+		brown: [2],
+		green: [3],
 	},
 };
 
@@ -81,19 +81,81 @@ export function getSettings() {
 	getDeck()
 }
 
-export function getDeck() {
-	if (conditions.level == 'very-easy') {
-		conditions.deck.blue = (mCards.blueCards.filter(cards => cards.difficulty == 'easy'))
+//export function getDeck() {
+//	if (conditions.level == 'very-easy') {
+//		conditions.deck.blue = (mCards.blueCards.filter(cards => cards.difficulty == 'easy'))
 
+//	}
+//	if (conditions.deck.blue.length < conditions.blue) {
+//		let arr = mCards.blueCards.filter(cards => cards.difficulty == 'normal')
+//		arr = shuffle(arr)
+//		for (let i = conditions.deck.blue.length; i < conditions.blue; i++) {
+//			conditions.deck.blue.push(arr.pop())
+//		}
+//	}
+//	conditions.deck.blue = shuffle(conditions.deck.blue)
+//	console.log(conditions.deck.blue)
+//}
+
+export function getDeck() {
+	if (conditions.level == 'very-easy' || conditions.level == 'very-hard') {
+		let main = conditions.level.slice(5,)
+		console.log(main)
+		for (let key in mCards) {
+			conditions.deck[String(key).slice(0, -5)] = (mCards[key].filter(cards => cards.difficulty == main && cards.color == String(key).slice(0, -5)))
+
+			if (conditions.deck[String(key).slice(0, -5)].length < conditions[String(key).slice(0, -5)]) {
+				let arr = mCards[key].filter(cards => cards.difficulty == 'normal')
+				arr = shuffle(arr)
+				for (let i = conditions.deck[String(key).slice(0, -5)].length; i < conditions[String(key).slice(0, -5)]; i++) {
+					conditions.deck[String(key).slice(0, -5)].push(arr.pop())
+				}
+			}
+			if (conditions.deck[String(key).slice(0, -5)].length > conditions[String(key).slice(0, -5)]) {
+				let arr = conditions.deck[String(key).slice(0, -5)]
+				arr = shuffle(arr)
+				let x = conditions.deck[String(key).slice(0, -5)].length - conditions[String(key).slice(0, -5)]
+				for (let i = 0; i < x; i++) {
+					arr.pop()
+				}
+				conditions.deck[String(key).slice(0, -5)] = arr
+			}
+		}
 	}
-	if (conditions.deck.blue.length < conditions.blue) {
-		let arr = mCards.blueCards.filter(cards => cards.difficulty == 'normal')
-		arr = shuffle(arr)
-		for (let i = conditions.deck.blue.length; i < conditions.blue; i++) {
-			conditions.deck.blue.push(arr.pop())
+	if (conditions.level == 'easy' || conditions.level == 'hard') {
+		let main = conditions.level
+		console.log(main)
+		for (let key in mCards) {
+			conditions.deck[String(key).slice(0, -5)] = (mCards[key].filter(cards => cards.difficulty == main || cards.difficulty == 'normal' && cards.color == String(key).slice(0, -5)))
+			if (conditions.deck[String(key).slice(0, -5)].length > conditions[String(key).slice(0, -5)]) {
+				let arr = conditions.deck[String(key).slice(0, -5)]
+				arr = shuffle(arr)
+				let x = conditions.deck[String(key).slice(0, -5)].length - conditions[String(key).slice(0, -5)]
+				for (let i = 0; i < x; i++) {
+					arr.pop()
+				}
+				conditions.deck[String(key).slice(0, -5)] = arr
+			}
+		}
+	}
+	if (conditions.level == 'normal') {
+		for (let key in mCards) {
+			conditions.deck[String(key).slice(0, -5)] = (mCards[key])
+			if (conditions.deck[String(key).slice(0, -5)].length > conditions[String(key).slice(0, -5)]) {
+				let arr = conditions.deck[String(key).slice(0, -5)]
+				arr = shuffle(arr)
+				let x = conditions.deck[String(key).slice(0, -5)].length - conditions[String(key).slice(0, -5)]
+				for (let i = 0; i < x; i++) {
+					arr.pop()
+				}
+				conditions.deck[String(key).slice(0, -5)] = arr
+			}
 		}
 	}
 	conditions.deck.blue = shuffle(conditions.deck.blue)
+	conditions.deck.brown = shuffle(conditions.deck.brown)
+	conditions.deck.green = shuffle(conditions.deck.green)
 	console.log(conditions.deck.blue)
+	console.log(conditions.deck.brown)
+	console.log(conditions.deck.green)
 }
-
