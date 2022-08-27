@@ -16,7 +16,6 @@ export function getAntcient() {
 
 export function getDifficulties() {
 	difficulties.forEach(element => {
-		console.log(element.id)
 		let button = document.createElement('button');
 		button.id = element.id;
 		button.textContent = element.name;
