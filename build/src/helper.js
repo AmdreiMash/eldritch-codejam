@@ -146,7 +146,7 @@ export function getDeck() {
 	}
 	if (conditions.level == 'normal') {
 		for (let key in mCards) {
-			conditions.deck[String(key).slice(0, -5)] = (mCards[key])
+			conditions.deck[String(key).slice(0, -5)] = Array.from(mCards[key])
 			if (conditions.deck[String(key).slice(0, -5)].length > conditions[String(key).slice(0, -5)]) {
 				let arr = conditions.deck[String(key).slice(0, -5)]
 				arr = shuffle(arr)
@@ -171,6 +171,7 @@ export function getDeck() {
 		conditions.deck.deck.push(i)
 	})
 	conditions.deck.deck = shuffle(conditions.deck.deck)
+	console.log(conditions.deck.deck)
 }
 
 export function showCount() {
