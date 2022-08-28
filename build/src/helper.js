@@ -42,6 +42,10 @@ export function getEvent() {
 		if (event.target.classList.contains('difficulties')) {
 			document.querySelectorAll('.difficulties').forEach(e => {
 				e.classList.remove('active')
+				document.querySelector('.showNextCard').classList.add('endShuffle')
+				document.querySelector('.cards').classList.add('done')
+				document.querySelector('.indicator').classList.add('done')
+				document.querySelector('.currentCard').style.backgroundImage = `none`
 			})
 			event.target.classList.add('active')
 		}
@@ -53,6 +57,7 @@ export function getEvent() {
 			document.querySelector('.showNextCard').classList.add('endShuffle')
 			document.querySelector('.cards').classList.add('done')
 			document.querySelector('.indicator').classList.add('done')
+			document.querySelector('.currentCard').style.backgroundImage = `none`
 		}
 		if (event.target.classList.contains('mixCard')) {
 			getSettings()
