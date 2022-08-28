@@ -74,21 +74,9 @@ const cardsData = [
 		color: 'blue'
 	},
 	{
-		id: 'blue13',
+		id: 'blue12',
 		cardFace: blueCardsAssets.blue12,
 		difficulty: 'normal',
-		color: 'blue'
-	},
-	{
-		id: 'blue14',
-		cardFace: blueCardsAssets.blue4,
-		difficulty: 'easy',
-		color: 'blue'
-	},
-	{
-		id: 'blue15',
-		cardFace: blueCardsAssets.blue6,
-		difficulty: 'hard',
 		color: 'blue'
 	},
 ]

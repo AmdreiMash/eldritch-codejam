@@ -109,18 +109,6 @@ const cardsData = [
 		difficulty: 'easy',
 		color: 'green'
 	},
-	{
-		id: 'green19',
-		cardFace: greenCardsAssets.green7,
-		difficulty: 'normal',
-		color: 'green'
-	},
-	{
-		id: 'green20',
-		cardFace: greenCardsAssets.green6,
-		difficulty: 'hard',
-		color: 'green'
-	},
 ]
 
 export default cardsData

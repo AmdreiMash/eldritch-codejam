@@ -11,9 +11,9 @@ let conditions = {
 	brown: 0,
 	green: 0,
 	deck: {
-		blue: [1],
-		brown: [2],
-		green: [3],
+		blue: [],
+		brown: [],
+		green: [],
 		deck: []
 	},
 	line: 0,
@@ -178,6 +178,22 @@ export function showCount() {
 	if (conditions.line == 3) {
 		document.querySelector('.showNextCard').classList.add('endShuffle')
 		document.querySelector('.indicator').classList.add('done')
+		document.querySelector('.currentCard').style.backgroundImage = `none`
+		conditions = {
+			cardSet: [],
+			level: 0,
+			blue: 0,
+			brown: 0,
+			green: 0,
+			deck: {
+				blue: [],
+				brown: [],
+				green: [],
+				deck: []
+			},
+			line: 0,
+			counter: 0,
+		};
 		return 'done'
 	}
 	let line = document.querySelectorAll('.line')

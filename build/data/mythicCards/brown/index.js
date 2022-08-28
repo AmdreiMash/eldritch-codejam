@@ -115,30 +115,6 @@ const cardsData = [
 		difficulty: 'normal',
 		color: 'brown'
 	},
-	{
-		id: 'brown20',
-		cardFace: brownCardsAssets.brown20,
-		difficulty: 'normal',
-		color: 'brown'
-	},
-	{
-		id: 'brown21',
-		cardFace: brownCardsAssets.brown21,
-		difficulty: 'easy',
-		color: 'brown'
-	},
-	{
-		id: 'brown21',
-		cardFace: brownCardsAssets.brown20,
-		difficulty: 'normal',
-		color: 'brown'
-	},
-	{
-		id: 'brown22',
-		cardFace: brownCardsAssets.brown6,
-		difficulty: 'hard',
-		color: 'brown'
-	},
 ]
 
 export default cardsData
