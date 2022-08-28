@@ -1,4 +1,4 @@
-import { values } from 'lodash';
+import { forEach, values } from 'lodash';
 import ancients from '../assets/Ancients';
 import cards from '../assets/MythicCards/blue';
 import ancientsData from '../data/ancients.js';
@@ -14,7 +14,10 @@ let conditions = {
 		blue: [1],
 		brown: [2],
 		green: [3],
+		deck: []
 	},
+	line: 0,
+	counter: 0,
 };
 
 export function shuffle(array) {
@@ -33,7 +36,7 @@ export function shuffle(array) {
 	return array;
 }
 
-let mod = ''
+
 export function getEvent() {
 	document.body.addEventListener('click', () => {
 		if (event.target.classList.contains('difficulties')) {
@@ -47,9 +50,15 @@ export function getEvent() {
 				e.classList.remove('active')
 			})
 			event.target.classList.add('active')
+			document.querySelector('.showNextCard').classList.add('endShuffle')
+			document.querySelector('.cards').classList.add('done')
+			document.querySelector('.indicator').classList.add('done')
 		}
 		if (event.target.classList.contains('mixCard')) {
 			getSettings()
+		}
+		if (event.target.classList.contains('showNextCard')) {
+			showCount()
 		}
 	})
 }
@@ -75,35 +84,28 @@ export function getSettings() {
 		elem.textContent = conditions.cardSet[index]
 	})
 	conditions.level = activeSettings[1].id
-	conditions.blue = conditions.cardSet[0] + conditions.cardSet[3] + conditions.cardSet[6]
+	conditions.green = conditions.cardSet[0] + conditions.cardSet[3] + conditions.cardSet[6]
 	conditions.brown = conditions.cardSet[1] + conditions.cardSet[4] + conditions.cardSet[7]
-	conditions.green = conditions.cardSet[2] + conditions.cardSet[5] + conditions.cardSet[8]
+	conditions.blue = conditions.cardSet[2] + conditions.cardSet[5] + conditions.cardSet[8]
 	getDeck()
 }
 
-//export function getDeck() {
-//	if (conditions.level == 'very-easy') {
-//		conditions.deck.blue = (mCards.blueCards.filter(cards => cards.difficulty == 'easy'))
-
-//	}
-//	if (conditions.deck.blue.length < conditions.blue) {
-//		let arr = mCards.blueCards.filter(cards => cards.difficulty == 'normal')
-//		arr = shuffle(arr)
-//		for (let i = conditions.deck.blue.length; i < conditions.blue; i++) {
-//			conditions.deck.blue.push(arr.pop())
-//		}
-//	}
-//	conditions.deck.blue = shuffle(conditions.deck.blue)
-//	console.log(conditions.deck.blue)
-//}
-
 export function getDeck() {
+	document.querySelector('.showNextCard').classList.remove('endShuffle')
+	document.querySelectorAll('.h-line')[0].classList.remove('red')
+	document.querySelectorAll('.h-line')[1].classList.remove('red')
+	document.querySelectorAll('.h-line')[2].classList.remove('red')
+	document.querySelector('.cards').classList.remove('done')
+	document.querySelector('.indicator').classList.remove('done')
+	conditions.deck.deck = []
+	conditions.deck.green = []
+	conditions.deck.blue = []
+	conditions.deck.brown = []
+	conditions.line = 0
 	if (conditions.level == 'very-easy' || conditions.level == 'very-hard') {
 		let main = conditions.level.slice(5,)
-		console.log(main)
 		for (let key in mCards) {
 			conditions.deck[String(key).slice(0, -5)] = (mCards[key].filter(cards => cards.difficulty == main && cards.color == String(key).slice(0, -5)))
-
 			if (conditions.deck[String(key).slice(0, -5)].length < conditions[String(key).slice(0, -5)]) {
 				let arr = mCards[key].filter(cards => cards.difficulty == 'normal')
 				arr = shuffle(arr)
@@ -124,7 +126,6 @@ export function getDeck() {
 	}
 	if (conditions.level == 'easy' || conditions.level == 'hard') {
 		let main = conditions.level
-		console.log(main)
 		for (let key in mCards) {
 			conditions.deck[String(key).slice(0, -5)] = (mCards[key].filter(cards => cards.difficulty == main || cards.difficulty == 'normal' && cards.color == String(key).slice(0, -5)))
 			if (conditions.deck[String(key).slice(0, -5)].length > conditions[String(key).slice(0, -5)]) {
@@ -155,7 +156,46 @@ export function getDeck() {
 	conditions.deck.blue = shuffle(conditions.deck.blue)
 	conditions.deck.brown = shuffle(conditions.deck.brown)
 	conditions.deck.green = shuffle(conditions.deck.green)
-	console.log(conditions.deck.blue)
-	console.log(conditions.deck.brown)
-	console.log(conditions.deck.green)
+	conditions.deck.blue.forEach(i => {
+		conditions.deck.deck.push(i)
+	})
+	conditions.deck.brown.forEach(i => {
+		conditions.deck.deck.push(i)
+	})
+	conditions.deck.green.forEach(i => {
+		conditions.deck.deck.push(i)
+	})
+	conditions.deck.deck = shuffle(conditions.deck.deck)
+}
+
+export function showCount() {
+	if (conditions.line == 3) {
+		document.querySelector('.showNextCard').classList.add('endShuffle')
+		document.querySelector('.indicator').classList.add('done')
+		return 'done'
+	}
+	let line = document.querySelectorAll('.line')
+	let counters = line[conditions.line].children
+	counters = Array.from(counters)
+	let curCard = conditions.deck.deck[conditions.deck.deck.length - 1]
+	if (counters[0].textContent != 0 || counters[1].textContent != 0 || counters[2].textContent != 0) {
+		if (counters.find(counet => counet.classList[0] == curCard.color && counet.textContent != 0)) {
+			counters.find(counet => counet.classList[0] == curCard.color && counet.textContent != 0).textContent--
+			showNextCard(curCard)
+			conditions.deck.deck.pop()
+		} else {
+			conditions.deck.deck = shuffle(conditions.deck.deck)
+			showCount()
+		}
+	} else if (conditions.line < 3) {
+		document.querySelectorAll('.h-line')[conditions.line].classList.add('red')
+		conditions.line++
+		showCount()
+	}
+}
+
+
+
+export function showNextCard(card) {
+	document.querySelector('.currentCard').style.backgroundImage = `url('${card.cardFace}')`
 }

@@ -111,3 +111,13 @@ body {
 	border: 2px rgba(129, 57, 57, 0.488) solid;
 	transform: scale(1.2);
 }
+.red {
+	color: red;
+}
+.done {
+	opacity: .0;
+}
+
+.endShuffle {
+	opacity: 0.5;
+}
