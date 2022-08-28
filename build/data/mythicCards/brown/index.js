@@ -133,6 +133,12 @@ const cardsData = [
 		difficulty: 'normal',
 		color: 'brown'
 	},
+	{
+		id: 'brown22',
+		cardFace: brownCardsAssets.brown6,
+		difficulty: 'hard',
+		color: 'brown'
+	},
 ]
 
 export default cardsData
