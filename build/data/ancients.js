@@ -52,13 +52,13 @@ const ancientsData = [
 		},
 		secondStage: {
 			greenCards: 2,
-			blueCards: 1,
 			brownCards: 3,
+			blueCards: 1,
 		},
 		thirdStage: {
 			greenCards: 3,
-			blueCards: 0,
 			brownCards: 4,
+			blueCards: 0,
 		},
 	},
 	{
@@ -67,18 +67,18 @@ const ancientsData = [
 		cardFace: Ancients.shubNiggurath,
 		firstStage: {
 			greenCards: 1,
-			blueCards: 1,
 			brownCards: 2,
+			blueCards: 1,
 		},
 		secondStage: {
 			greenCards: 3,
-			blueCards: 1,
 			brownCards: 2,
+			blueCards: 1,
 		},
 		thirdStage: {
 			greenCards: 2,
-			blueCards: 0,
 			brownCards: 4,
+			blueCards: 0,
 		},
 	},
 ]
